@@ -47,6 +47,7 @@ router.post('/api/create', function(req, res, next){
     var wardrobeObj = {
       name: name,
       category: category,
+      brand: brand,
       pattern: pattern,
       color: color,
       material: material,
@@ -160,7 +161,7 @@ router.post('/api/update/:id', function(req, res, next){
    var dataToUpdate = {}; // a blank object of data to update
 
     // pull out the information from the req.body and add it to the object to update
-    var name, category, pattern, color, season, year, location, url; 
+    var name, category, brand, pattern, color, season, year, location, url; 
 
     // we only want to update any field if it actually is contained within the req.body
     // otherwise, leave it alone.
@@ -174,15 +175,15 @@ router.post('/api/update/:id', function(req, res, next){
       // add to object that holds updated data
       dataToUpdate['category'] = category;
     }
+    if(req.body.brand) {
+      brand = req.body.brand;
+      // add to object that holds updated data
+      dataToUpdate['brand'] = brand;
+    }
     if(req.body.pattern) {
       pattern = req.body.pattern;
       // add to object that holds updated data
       dataToUpdate['pattern'] = pattern;
-    }
-    if(req.body.color) {
-      color = req.body.color;
-      // add to object that holds updated data
-      dataToUpdate['color'] = color;
     }
     if(req.body.season) {
       season = req.body.season;
@@ -219,6 +220,13 @@ router.post('/api/update/:id', function(req, res, next){
       style = req.body.style.split(","); // split string into array
       // add to object that holds updated data
       dataToUpdate['style'] = style;
+    }
+
+    var color = []; // blank array to hold tags
+    if(req.body.color){
+      color = req.body.color.split(","); // split string into array
+      // add to object that holds updated data
+      dataToUpdate['color'] = color;
     }
 
 
