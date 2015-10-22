@@ -36,10 +36,14 @@ router.post('/api/create', function(req, res, next){
 
     // pull out the information from the req.body
     var name = req.body.name;
-    var age = req.body.age;
-    var tags = req.body.tags.split(","); // split string into array
-    var weight = req.body.weight;
-    var color = req.body.color;
+    var category = req.body.category;
+    var brand = req.body.brand;
+    var pattern = req.body.pattern;
+    var color = req.body.color.split(",");
+    var material = req.body.material.split(","); // split string into array
+    var style = req.body.style;
+    var season = req.body.season;
+    var location = req.body.location;
     var url = req.body.url;
 
     // hold all this data in an object
