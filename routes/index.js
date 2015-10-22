@@ -43,7 +43,7 @@ router.post('/api/create', function(req, res, next){
     var material = req.body.material.split(","); // split string into array
     var style = req.body.style;
     var season = req.body.season;
-    var season = req.body.year;
+    var year = req.body.year;
     var location = req.body.location;
     var url = req.body.url;
 
