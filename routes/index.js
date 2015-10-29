@@ -14,7 +14,7 @@ var Wardrobe = require("../models/model.js");
 router.get('/', function(req, res, next) {
   
   var jsonData = {
-  	'name': 'node-express-api-boilerplate',
+  	'name': 'wardrobe-report',
   	'api-status':'OK'
   }
 
@@ -23,6 +23,9 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/wardrobe', function(req, res){
+  res.render('wardrobe.html');
+});
 /**
  * POST '/api/create'
  * Receives a POST request of the new user and location, saves to db, responds back
@@ -121,6 +124,10 @@ router.get('/api/get/:id', function(req, res, next){
   
   })
 })
+
+router.get('wardrobe', function(req, res){
+res.render('wardrobe.html')
+});
 
 // /**
 //  * GET '/api/get'

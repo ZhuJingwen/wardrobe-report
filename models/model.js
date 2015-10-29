@@ -3,6 +3,12 @@ var Schema = mongoose.Schema;
 
 // See http://mongoosejs.com/docs/schematypes.html
 
+// var userSchema = new Schema({
+// 	name: String,
+// 	bio: String,
+// 	wardrobes: [type:Schema.ObjectId: ref:'Wardrobe']
+// })
+
 var wardrobeSchema = new Schema({
 	name: {type: String, required: false},
 	// name: {type: String, required: true}, // this version requires this field to exist
@@ -20,6 +26,7 @@ var wardrobeSchema = new Schema({
 	location: String,
 	url: {type: String, required: false},
 	dateAdded : { type: Date, default: Date.now },
+	//user: {type:Schema.ObjectId: ref:'User'}
 })
 
 // export 'Animal' model so we can interact with it in other files

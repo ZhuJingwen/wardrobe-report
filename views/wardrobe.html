@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wardrobe Report</title>
+
+    <!-- Custom Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300|PT+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- ammap CSS -->
+    <link rel="stylesheet" href="ammap/ammap.css" type="text/css">
+
+    <!-- Custom CSS inside CSS folder -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="header" class="row" data-spy="affix" >
+        <img id="logo" src="svg/logo.svg" width="200" class="col-md-3"></img>
+        <div id="menu">
+            <div id="report-button" class="menu-button col-md-2">
+                <p>Report</p>
+            </div>
+            <div id="add-new-button" class="menu-button col-md-2">
+                <p>Add New</p>
+            </div>
+            <div id="what-to-wear-button" class="menu-button col-md-2">
+                <p>What to wear</p>
+            </div>
+            <div id="about-button" class="menu-button col-md-2">
+                <p>About</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sub-header" class="row" data-spy="affix" >
+        <img id="sub-logo" src="svg/logo.svg" width="140"></img>
+        <div id="sub-menu">
+            <div id="sub-wardrobe-button" class="menu-button">
+                <p>My Wardrobe</p>
+            </div>
+            <div id="sub-color-button" class="menu-button">
+                <p>Color</p>
+            </div>
+            <div id="sub-pattern-button" class="menu-button">
+                <p>Pattern</p>
+            </div>
+            <div id="sub-material-button" class="menu-button">
+                <p>Material</p>
+            </div>
+            <div id="sub-location-button" class="menu-button">
+                <p>Made In</p>
+            </div>
+            <div id="sub-top-button" class="menu-button">
+                <p>Back to top</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="cover">
+         <div id="button-wrapper">
+         <button id="cover-add-new" type="button" class="cover-button">I got a new dress!</button>
+          <button id="view-button" type="button" class="cover-button  ">View my report</button>
+      </div>
+       
+    <img src="img/background.jpg" id="background-img" class="img-responsive">   
+    </div>
+ 
+
+    <div class="container">
+    <div id="report" class="content-wrapper">
+    <div id="wardrobe" class="row animation-element">
+        <h1>My Wardrobe</h1>
+    </div>
+
+    <div id="color-chart" class="row charts animation-element">
+        <h1>Colors</h1>
+    </div>   
+
+    <div id="pattern-chart"  class="row charts animation-element">
+        <h1>Patterns</h1>
+    </div>  
+        
+    <div id="material-chart"  class="row charts animation-element">
+        <h1>Materials</h1>
+    </div> 
+
+    <div id="time-chart" class="row charts animation-element">
+        <h1>Purchase Time</h1>
+        <canvas id="time-line-chart" style="width: 100%"></canvas>
+    </div>     
+
+    <div id="map-chart" class="row charts animation-element">
+        <h1>Made In</h1>
+        <div id="mapdiv" style="width: 100%; height: 600px;"></div>
+    </div>
+</div>
+
+<div id="add-new" class="content-wrapper">
+	        <form method="post" action="/api/create">
+          <div class="form-group">
+            <label for="input-name">Description</label>
+            <input type="text" class="form-control" id="input-name" placeholder="Name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="input-category">Category</label>
+            <input type="text" class="form-control" id="input-category" placeholder="Category" name="category">
+          </div>
+          <div class="form-group">
+            <label for="input-brand">Brand</label>
+            <input type="text" class="form-control" id="input-brand" placeholder = "Brand" name="brand">
+          </div>
+          <div class="form-group">
+            <label for="input-pattern">Pattern</label>
+            <input type="text" class="form-control" id="input-pattern" placeholder="Pattern" name="pattern">
+          </div>  
+          <div class="form-group">
+            <label for="input-color">Color</label>
+            <input type="text" class="form-control" id="input-color" placeholder="Color" name="color">
+          </div>   
+          <div class="form-group">
+            <label for="input-material">Material</label>
+            <input type="text" class="form-control" id="input-material" placeholder="Material" name="material">
+            <p class="help-block">Enter materials separated by comma</p>
+          </div>         
+          <div class="form-group">
+            <label for="input-style">Style</label>
+            <input type="text" class="form-control" id="input-style" placeholder="Style" name="style">
+          </div>   
+                    <div class="form-group">
+            <label for="input-season">Season</label>
+            <input type="text" class="form-control" id="input-season" placeholder="Season" name="season">
+        </div>
+                      <div class="form-group">
+            <label for="input-year">Year</label>
+            <input type="text" class="form-control" id="input-year" placeholder="Year" name="year">
+          </div>   
+                    <div class="form-group">
+            <label for="input-location">Location</label>
+            <input type="text" class="form-control" id="input-location" placeholder="Location" name="location">
+          </div>   
+                    <div class="form-group">
+            <label for="input-url">Url</label>
+            <input type="text" class="form-control" id="input-url" placeholder="Url" name="url">
+          </div>   
+                  
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form> 
+
+<!--     <div class="form-group">
+        <label for="input-style">Description</label>
+        <input type="text" class="form-control" id="input-style" placeholder="Description of the cloth">
+    </div>
+
+     <div class="form-group">
+        <label for="input-category">Category</label>
+        <div class="btn-group">
+            <button id="input-category" type="button" class="btn  btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Category
+                <span class="caret"></span></button>
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul id="dropdown-category" class="dropdown-menu">
+            <li>Dresses</li>
+            <li>Tops</li>
+            <li>Sweatshirts</li>
+            <li>Sweaters</li>
+            <li>Outwears</li>
+            <li>Jeanss</li>
+            <li>Shortss</li>
+            <li>Skirts</li>
+            <li>Jumpsuits</li>
+        </ul>
+    </div>
+</div>
+
+    <div class="form-group">
+        <label for="input-brand">Brand</label>
+        <input type="text" class="form-control" id="input-brand">
+    </div>
+
+<div class="form-group">
+    <label for="input-color">Color</label>
+    <div id ="input-color" class="btn-group" role="group" aria-label="Color">
+        <button type="button" class="btn btn-default">Black</button>
+        <button type="button" class="btn btn-default">Navy</button>
+        <button type="button" class="btn btn-default">Blue</button>
+        <button type="button" class="btn btn-default">Dark Wash</button>
+        <button type="button" class="btn btn-default">Light Wash</button>
+        <button type="button" class="btn btn-default">Grey</button>
+        <button type="button" class="btn btn-default">Khaki</button>
+        <button type="button" class="btn btn-default">Mustard</button>
+        <button type="button" class="btn btn-default">Orange</button>
+        <button type="button" class="btn btn-default">Red</button>
+        <button type="button" class="btn btn-default">Pink</button>
+        <button type="button" class="btn btn-default">White</button>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input-pattern">Pattern</label>
+    <div id ="input-pattern" class="btn-group" role="group" aria-label="Pattern">
+        <button type="button" class="btn btn-default">Solid</button>
+        <button type="button" class="btn btn-default">Dots</button>
+        <button type="button" class="btn btn-default">Stripes</button>
+        <button type="button" class="btn btn-default">knit</button>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input-material">Material</label>
+    <div id ="input-material" class="btn-group" role="group" aria-label="Material">
+        <button type="button" class="btn btn-default">Cotton</button>
+        <button type="button" class="btn btn-default">Polyester</button>
+        <button type="button" class="btn btn-default">Spandex</button>
+        <button type="button" class="btn btn-default">Silk</button>
+        <button type="button" class="btn btn-default">Rayon</button>
+        <button type="button" class="btn btn-default">Arcrylic</button>
+        <button type="button" class="btn btn-default">Nylon</button>
+        <button type="button" class="btn btn-default">Cashmere</button>
+        <button type="button" class="btn btn-default">Polyamide</button>
+        <button type="button" class="btn btn-default">EN</button>
+        <button type="button" class="btn btn-default">Visco</button>
+        <button type="button" class="btn btn-default">Wool</button>
+        <button type="button" class="btn btn-default">Leather</button>
+        <button type="button" class="btn btn-default">Down</button>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="input-time">Purchase Time</label>
+        <div id="input-time"class="btn-group">
+            <button id="input-year" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Year
+            <span class="caret"></span></button>
+        </button>
+        <ul id="dropdown-year" class="dropdown-menu">
+            <li>2012</li>
+            <li>2013</li>
+            <li>2014</li>
+            <li>2015</li>
+        </ul>
+            <div id="input-season" class="btn-group" role="group">
+            <button type="button" class="btn btn-default">Spring</button>
+            <button type="button" class="btn btn-default">Summer</button>
+            <button type="button" class="btn btn-default">Fall</button>
+            <button type="button" class="btn btn-default">Winter</button>
+            </div>
+            
+    
+</div>
+
+
+</div>
+
+<div class="form-group">
+    <label for="input-location">Made In</label>
+    <input type="text" class="form-control" id="input-location">
+</div>
+
+ <button id="add-button" type="button" class="btn btn-default">Add to my wardrobe</button>
+ <div id="saved"></div> -->
+</div>
+
+<div id="what-to-wear" class="content-wrapper">
+    <div class="row">
+    <div class="form-group col-md-4" >
+        <label for="input-city">I'm going to</label>
+        <input type="text" class="form-control" id="input-city" placeholder="City Name">
+    
+    <a id="city-button" class="btn btn-default" href="#" role="button">What should I wear?</a>
+    <div id="weather-result" "col-md-8">
+    </div>
+    </div>
+</div>  
+</div>
+
+</div>
+
+
+
+</body>
+
+    <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- CHART JS -->
+    <script src="js/Chart.js"></script>
+
+    <!-- ammap JS -->
+     <script src="ammap/ammap.js" type="text/javascript"></script>
+     <script src="ammap/maps/js/worldLow.js" type="text/javascript"></script>
+    <script src="ammap/themes/black.js" type="text/javascript"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="js/main.js"></script>
+</html>
